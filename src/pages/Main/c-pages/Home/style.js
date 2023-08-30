@@ -14,5 +14,6 @@ export const HomeWrapper = styled.div`
     margin-left: 10px;
     padding: 10px;
     border: 1px solid #ddd;
+    height: 400px;
   }
 `

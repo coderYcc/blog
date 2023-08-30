@@ -1,5 +1,6 @@
 import React, { memo, useEffect } from 'react'
 import ArticleItem from './c-cpns/ArticleItem'
+import EveryDay from './c-cpns/EveryDay';
 import  { queryArticleList } from '../../../../network/article'
 import { message, BackTop } from 'antd';
 import {
@@ -46,7 +47,7 @@ const Home = memo(() => {
         }
       </div>
       <div className='article-log'>
-        
+        <EveryDay/>
       </div>
       <BackTop>
         <div style={style}>UP</div>

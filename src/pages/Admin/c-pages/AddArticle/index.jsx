@@ -35,21 +35,25 @@ const AddArticle = memo(() => {
   const changeDescription = (e) => {
     let html = marked(e.target.value)
     setArticleDescription(html)
-    console.log(articleDescription);
   }
 
   const handleSaveArticle = () => {
-    if(!markdownContent) return
+    if(!markdownContent || !articleDescription) {
+      message.success('请完善文章内容');
+      return void 0
+    }
     let params = {
       articleTitle: articleTitle.current.state.value,
       articleContent: markdownContent,
-      articleDesc: '描述',
+      articleDesc: articleDescription,
       articleImage: 'http://120.78.186.182/images/cart.jpg',
     }
     saveArticleInfo(params).then(() => {
       message.success('保存成功');
+      handleCancel()
     }).catch(() => {
       message.error('文章保存失败，请稍后重试');
+      handleCancel()
     })
   }
 
@@ -63,8 +67,10 @@ const AddArticle = memo(() => {
     }
     saveArticleInfo(params).then(() => {
       message.success('暂存成功');
+      handleCancel()
     }).catch(() => {
       message.error('文章暂存失败，请稍后重试');
+      handleCancel()
     })
   }
 
@@ -84,7 +90,7 @@ const AddArticle = memo(() => {
     <EditWrapper>
       <Row gutter={5}>
         <Col span={24}>
-          <Row gutter={16} style={{'margin-bottom': '10px'}}>
+          <Row gutter={16} style={{'marginBottom': '10px'}}>
             <Col span={10}><Input ref={articleTitle} placeholder='title'/></Col>
             <Col span={2}>
               <Button onClick={showModal}>保存</Button>
@@ -99,7 +105,7 @@ const AddArticle = memo(() => {
               </Modal>
             </Col>
           </Row>
-          <Row gutter={16} style={{'margin-bottom': '10px'}}>
+          <Row gutter={16} style={{'marginBottom': '10px'}}>
             <Col span={8}>
               <TextArea
                 className="article-desc"
