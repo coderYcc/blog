@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getFormatDate, judegHour, sloarToLunar } from '../../../../../../utils'
 import { EveryDayWrapper } from './style'
+import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 export default function EveryDay() {
   const date = new Date()
   const hello = judegHour(date)
@@ -126,11 +127,15 @@ export default function EveryDay() {
       </div>
       <div className="day-calendar">
         <div className='change-card'>
-          <div class="iconfont icon-fanhui1 color-weight" onClick={() => handleSelect('last-year')}></div>
-          <div class="iconfont icon-fanhui1 color-weight" onClick={() => handleSelect('last-month')}></div>
+          <LeftOutlined onClick={() => handleSelect('last-year')} />
+          <LeftOutlined onClick={() => handleSelect('last-month')} />
+          {/* <div className="iconfont icon-fanhui1 color-weight" onClick={() => handleSelect('last-year')}></div>
+          <div className="iconfont icon-fanhui1 color-weight" onClick={() => handleSelect('last-month')}></div> */}
           <div className='card-title'>{title}</div>
-          <div class="iconfont icon-fanhui2 color-weight" onClick={() => handleSelect('next-month')}></div>
-          <div class="iconfont icon-fanhui2 color-weight" onClick={() => handleSelect('next-year')}></div>
+          <RightOutlined onClick={() => handleSelect('next-month')} />
+          <RightOutlined onClick={() => handleSelect('next-year')} />
+          {/* <div className="iconfont icon-fanhui2 color-weight" onClick={() => handleSelect('next-month')}></div>
+          <div className="iconfont icon-fanhui2 color-weight" onClick={() => handleSelect('next-year')}></div> */}
         </div>
         <div className='calendar-week'>
           {

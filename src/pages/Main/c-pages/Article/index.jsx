@@ -15,7 +15,7 @@ import {
 const renderer = new marked.Renderer()
 marked.setOptions({
   renderer: renderer,
-  gfm: true,
+  gfm: true, 
   pedantic: false, 
   sanitize: false,
   tables: true,

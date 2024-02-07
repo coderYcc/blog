@@ -73,9 +73,8 @@ export const ArticleWrapper = styled.div`
   
   pre > code{
     border:0px !important;
-    background-color: #283646 !important;
+    background-color: ##282C34 !important;
     color:#FFF;
-  
   }
   code {
     display: inline-block ;
@@ -91,5 +90,29 @@ export const ArticleWrapper = styled.div`
   }
   blockquote p{
     margin: 0;
+  }
+
+  p {
+    margin: 10px 0;
+  }
+
+  ul {
+    padding: 0 20px;
+    li {
+      list-style: circle;
+      li {
+        list-style: disc;
+        li {
+          list-style: square;
+        }
+      }
+    }
+  }
+
+  table {
+    tr, td, th {
+      padding: 0 5px;
+      border: 1px solid;
+    }
   }
 `

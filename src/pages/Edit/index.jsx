@@ -1,9 +1,11 @@
 import React, { memo } from 'react'
-import BasicEditer from '../../components/BasicEditer'
+// import BasicEditer from '../../components/BasicEditer'
+import MarkdownEditor from '../../components/MarkdownEditer'
 const Edit = memo(() => {
   return (
     <div>
-      <BasicEditer/>
+      {/* <BasicEditer/> */}
+      <MarkdownEditor/>
     </div>
   )
 })

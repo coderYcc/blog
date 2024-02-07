@@ -9,6 +9,11 @@ export const EveryDayWrapper = styled.div`
     .change-card {
       display: flex;
       justify-content: center;
+      align-items: center;
+      img {
+        width: 16px;
+        height: 16px;
+      }
       .color-weight {
         font-weight: 700;
         margin: 0 2px;

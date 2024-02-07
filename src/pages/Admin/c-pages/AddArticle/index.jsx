@@ -14,15 +14,15 @@ const AddArticle = memo(() => {
   const [isModalHoldOpen, setIsModalHoldOpen] = useState(false)
   const articleTitle = useRef(null)
   marked.setOptions({
-    renderer: new marked.Renderer(),
-    gfm: true,
-    pedantic: false,
+    renderer: new marked.Renderer(), // 用于自定义输出 HTML 的渲染器
+    gfm: true, // 启用 GitHub 风格的 Markdown。默认为 true
+    pedantic: false, 
     sanitize: false,
     tables: true,
-    breaks: true,
-    smartLists: true,
-    smartypants: false,
-    highlight: function (code) {
+    breaks: true, // 将行内的换行符转换为 <br>
+    smartLists: true, // 启用智能列表。即自动将 - 和 * 转换为无序列表，而将数字和 . 转换为有序列表。
+    smartypants: false, // 启用智能标点。不自动将引号和破折号转换为智能标点。
+    highlight: function (code) { // 用于高亮代码块的函数
       return hljs.highlightAuto(code).value;
     },
   })

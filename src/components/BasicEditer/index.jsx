@@ -98,7 +98,7 @@ const BasicEditer = () => {
           <div onClick={increaseFontSize}>A+</div>
           <div onClick={decreaseFontSize}>A-</div>
           <div className='iconfont icon-chakandaimapianduan' onClick={handleAddCodeBlock}></div>
-          <div class="iconfont icon-tupian" onClick={handleUploadImg}></div>
+          <div className="iconfont icon-tupian" onClick={handleUploadImg}></div>
         </div>
         <Editable
           renderElement={renderElement}
