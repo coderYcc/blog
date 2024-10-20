@@ -1,72 +1,97 @@
-import React, { useEffect, useState } from 'react';
-import { UploadOutlined } from '@ant-design/icons';
-import { Button, message, Upload } from 'antd';
-const UploadFile = ({ value, onChange }) => {
-  const [OSSData, setOSSData] = useState();
+import React, { useState, useEffect } from 'react';
+import { PlusOutlined } from '@ant-design/icons';
+import { Button, Upload } from 'antd';
+import { getOssInfo } from '../../network/file';
+import { UploadWrapper } from './style';
+import OSS from 'ali-oss';
 
-  // Mock get OSS api
-  // https://help.aliyun.com/document_detail/31988.html
-  const mockGetOSSData = () => ({
-    dir: 'user-dir/',
-    expire: '1577811661',
-    host: '//www.mocky.io/v2/5cc8019d300000980a055e76',
-    accessId: 'c2hhb2RhaG9uZw==',
-    policy: 'eGl4aWhhaGFrdWt1ZGFkYQ==',
-    signature: 'ZGFob25nc2hhbw==',
-  });
-  const init = async () => {
-    try {
-      const result = await mockGetOSSData();
-      setOSSData(result);
-    } catch (error) {
-      message.error(error);
-    }
-  };
+const getBase64 = (img, callback) => {
+  const reader = new FileReader();
+  reader.addEventListener('load', () => callback(reader.result));
+  reader.readAsDataURL(img);
+};
+
+const UploadFile = ({ value, onUploadSuccess }) => {
+  const [fileUrl,setFileUrl] = useState('')
+  const [ossData, setOssData] = useState({})
+  const [fileList, setFileList] = useState([]);
+  const [imageUrl, setImageUrl] = useState();
+
+  const queryOssUpload = () => {
+    return getOssInfo().then((res) => {
+      if(res?.status) {
+        const credentials = res.data || {};
+        const { AccessKeyId, AccessKeySecret, SecurityToken, bucket, region } = credentials;
+        setOssData({
+          accessKeyId: AccessKeyId,
+          accessKeySecret: AccessKeySecret,
+          stsToken: SecurityToken,
+          bucket,
+          region
+        });
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+
   useEffect(() => {
-    init();
-    //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const handleChange = ({ fileList }) => {
-    console.log('Aliyun OSS:', fileList);
-    onChange?.([...fileList]);
-  };
-  const onRemove = (file) => {
-    const files = (value || []).filter((v) => v.url !== file.url);
-    if (onChange) {
-      onChange(files);
+    queryOssUpload()
+  }, [])
+
+  const handleUpload = async () => {
+    if(fileList.length) {
+      const fileName = 'blog-' + new Date().getTime() + '.jpg';
+      const ossClient = new OSS(ossData);
+      await ossClient.put(fileName, fileList[0])
+      await ossClient.putACL(fileName, 'public-read');
+      setFileUrl(`http://oss.yexbxyz.top/` + fileName)
     }
-  };
-  const getExtraData = (file) => ({
-    key: file.url,
-    OSSAccessKeyId: OSSData?.accessId,
-    policy: OSSData?.policy,
-    Signature: OSSData?.signature,
-  });
-  const beforeUpload = async (file) => {
-    if (!OSSData) return false;
-    const expire = Number(OSSData.expire) * 1000;
-    if (expire < Date.now()) {
-      await init();
+  }
+
+  useEffect(() => {
+    if(fileUrl && onUploadSuccess) {
+      onUploadSuccess(fileUrl);
     }
-    const suffix = file.name.slice(file.name.lastIndexOf('.'));
-    const filename = Date.now() + suffix;
-    // @ts-ignore
-    file.url = OSSData.dir + filename;
-    return file;
-  };
+  }, [fileUrl, onUploadSuccess]);
+
   const uploadProps = {
-    name: 'file',
-    fileList: value,
-    action: OSSData?.host,
-    onChange: handleChange,
-    onRemove,
-    data: getExtraData,
-    beforeUpload,
+    listType: "picture-card",
+    onRemove: (file) => {
+      const index = fileList.indexOf(file);
+      const newFileList = fileList.slice();
+      newFileList.splice(index, 1);
+      setFileList(newFileList);
+      setImageUrl('');
+    },
+    beforeUpload: (file) => {
+      setFileList([...fileList, file]);
+      getBase64(file, (url) => {
+        setImageUrl(url);
+      });
+      return false;
+    },
+    fileList,
   };
+
   return (
-    <Upload {...uploadProps}>
-      <Button icon={<UploadOutlined />}>Click to Upload</Button>
-    </Upload>
+    <UploadWrapper>
+      <Button className='confirm-upload' onClick={handleUpload}>上传</Button>
+      <Upload {...uploadProps}>
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt="avatar"
+            style={{
+              width: '100%',
+              overflow: 'hidden'
+            }}
+          />
+        ) : (
+          <PlusOutlined />
+        )}
+      </Upload>
+    </UploadWrapper>
   );
 };
 
