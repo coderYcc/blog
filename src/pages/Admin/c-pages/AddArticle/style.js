@@ -1,17 +1,17 @@
 import styled from 'styled-components'
 export const EditWrapper = styled.div`
   .markdown-content {
-    height: 420px;
+    height: 380px;
   }
   .article-desc {
-    height: 80px;
+    height: 104px;
   }
   .show-html{
     padding:10px;
     border:1px solid #ddd;
     border-radius: 5px;
     font-size:16px;
-    height: 420px;
+    height: 380px;
     background-color: #f0f0f0;
     overflow: auto;
   }
@@ -55,11 +55,11 @@ export const EditWrapper = styled.div`
   pre{
     display: block;
     background-color: #283646 !important;
-     padding: .5rem !important;
-     overflow-y: auto;
-     font-weight: 300;
-     font-family: Menlo, monospace;
-     border-radius: .3rem;
+    padding: .5rem !important;
+    overflow-y: auto;
+    font-weight: 300;
+    font-family: Menlo, monospace;
+    border-radius: .3rem;
   }
   
   pre > code{
@@ -82,5 +82,9 @@ export const EditWrapper = styled.div`
   }
   blockquote p{
     margin: 0;
+  }
+  img {
+    width: 104px;
+    height: 104px;
   }
 `

@@ -9,6 +9,7 @@ import Project from '../pages/Main/c-pages/Project'
 import Article from '../pages/Main/c-pages/Article'
 import Admin from '../pages/Admin'
 import AddArticle from '../pages/Admin/c-pages/AddArticle'
+import UploadFile from '../pages/Admin/c-pages/UploadFile'
 
 const routes = [
   {
@@ -57,7 +58,11 @@ const routes = [
       {
         path: '/admin/add-article',
         component: AddArticle
-      }
+      },
+      {
+        path: '/admin/upload-file',
+        component: UploadFile
+      },
     ]
   },
   {

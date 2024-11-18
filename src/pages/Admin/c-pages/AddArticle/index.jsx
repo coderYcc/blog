@@ -2,6 +2,7 @@ import React, { memo, useState, useRef } from 'react'
 import { marked } from 'marked';
 import hljs from "highlight.js";
 import { Row, Col, Input, Button, message, Modal } from 'antd';
+import UploadFile from '@/components/UploadFile'
 import 'highlight.js/styles/monokai-sublime.css';
 import { EditWrapper } from './style';
 import { saveArticleInfo } from '../../../../network/article'
@@ -12,6 +13,7 @@ const AddArticle = memo(() => {
   const [markdownContent, setMarkdownContent] = useState('预览内容') // markdown转换为html的内容
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isModalHoldOpen, setIsModalHoldOpen] = useState(false)
+  const [imageUrl, setImageUrl] = useState('')
   const articleTitle = useRef(null)
   marked.setOptions({
     renderer: new marked.Renderer(), // 用于自定义输出 HTML 的渲染器
@@ -46,7 +48,7 @@ const AddArticle = memo(() => {
       articleTitle: articleTitle.current.state.value,
       articleContent: markdownContent,
       articleDesc: articleDescription,
-      articleImage: 'http://120.78.186.182/images/cart.jpg',
+      articleImage: imageUrl,
     }
     saveArticleInfo(params).then(() => {
       message.success('保存成功');
@@ -63,7 +65,7 @@ const AddArticle = memo(() => {
       articleTitle: articleTitle.current.state.value,
       articleContent: markdownContent,
       articleDesc: '描述',
-      articleImage: 'http://120.78.186.182/images/cart.jpg',
+      articleImage: imageUrl,
     }
     saveArticleInfo(params).then(() => {
       message.success('暂存成功');
@@ -72,6 +74,10 @@ const AddArticle = memo(() => {
       message.error('文章暂存失败，请稍后重试');
       handleCancel()
     })
+  }
+
+  const handleUploadSuccess = (url) => {
+    setImageUrl(url)
   }
 
   const showModal = () => {
@@ -91,7 +97,7 @@ const AddArticle = memo(() => {
       <Row gutter={5}>
         <Col span={24}>
           <Row gutter={16} style={{'marginBottom': '10px'}}>
-            <Col span={10}><Input ref={articleTitle} placeholder='title'/></Col>
+            <Col span={10}><Input ref={articleTitle} placeholder='文章标题'/></Col>
             <Col span={2}>
               <Button onClick={showModal}>保存</Button>
               <Modal title="温馨提示" visible={isModalOpen} onOk={handleSaveArticle} onCancel={handleCancel}>
@@ -105,8 +111,8 @@ const AddArticle = memo(() => {
               </Modal>
             </Col>
           </Row>
-          <Row gutter={16} style={{'marginBottom': '10px'}}>
-            <Col span={8}>
+          <Row gutter={16}>
+            <Col span={10}>
               <TextArea
                 className="article-desc"
                 rows={35}
@@ -114,6 +120,12 @@ const AddArticle = memo(() => {
                 onPressEnter={changeDescription}
                 placeholder="文章描述"
               />
+            </Col>
+            <Col span={7}>
+              <UploadFile onUploadSuccess={handleUploadSuccess}></UploadFile>
+            </Col>
+            <Col span={4}>
+              {(imageUrl && <img src={imageUrl} alt="" />)}
             </Col>
           </Row>
           <Row gutter={16}>
