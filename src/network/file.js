@@ -6,3 +6,19 @@ export function getOssInfo() {
     method: "GET"
   });
 }
+
+export function saveFileInfo(params) {
+  return request({
+		url: '/file/addFile',
+    data: {
+      params
+    },
+    method: "POST"
+  });
+}
+
+export function queryFileList() {
+  return request({
+		url: '/file/getFileList',
+  });
+}

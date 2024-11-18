@@ -38,5 +38,15 @@ export const menuLinks = [
     title: "资源管理",
     icon: 'FireOutlined',
     link: "/admin/resource",
+    children: [
+      {
+        title: '文件上传',
+        link: "/admin/upload-file"
+      },
+      {
+        title: '文件列表',
+        link: "/admin/file-list"
+      },
+    ]
   },
 ]

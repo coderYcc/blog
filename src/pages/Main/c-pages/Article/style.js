@@ -73,7 +73,7 @@ export const ArticleWrapper = styled.div`
   
   pre > code{
     border:0px !important;
-    background-color: ##282C34 !important;
+    background-color: #282C34 !important;
     color:#FFF;
   }
   code {
