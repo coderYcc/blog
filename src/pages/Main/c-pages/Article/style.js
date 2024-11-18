@@ -61,6 +61,9 @@ export const ArticleWrapper = styled.div`
   h4 {
     font-size:20px;
   }
+  h5 {
+    font-size:18px;
+  }
   pre {
     display: block;
     background-color: #283646 !important;
