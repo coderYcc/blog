@@ -45,7 +45,7 @@ const Article = memo((props) => {
   }, [articleId]);
 
   useEffect(() => {
-    let list = [ ...articleLog.current.querySelectorAll("h1,h2,h3,h4,h5") ]
+    let list = [ ...articleLog.current.querySelectorAll("h1,h2,h3,h4,h5,h6") ]
     let logList = list.map((item) => {
       return {
         href: '#' + item.id,
