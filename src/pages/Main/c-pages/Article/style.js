@@ -121,4 +121,7 @@ export const ArticleWrapper = styled.div`
       border: 1px solid;
     }
   }
+  img {
+    max-width: 885px;
+  }
 `
