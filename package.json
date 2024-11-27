@@ -33,7 +33,8 @@
     "slate-history": "^0.93.0",
     "slate-react": "^0.94.0",
     "styled-components": "^5.3.6",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "webpack-bundle-analyzer": "^4.10.2"
   },
   "scripts": {
     "serve": "craco start",
