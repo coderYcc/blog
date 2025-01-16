@@ -5,13 +5,13 @@ import { renderRoutes } from 'react-router-config';
 import routes from './router';
 
 
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 const App = memo(() => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       {renderRoutes(routes)}
-    </BrowserRouter>
+    </HashRouter>
   )
 })
 
