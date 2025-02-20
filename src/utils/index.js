@@ -1,4 +1,4 @@
-function dateFormat(time, fmt) {
+function dateFormat(time, fmt = 'yyyy-MM-dd hh:mm:ss') {
 	let date = new Date(time)
   if (/(y+)/.test(fmt)) {
     fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));

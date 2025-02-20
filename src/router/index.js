@@ -10,6 +10,7 @@ import Article from '../pages/Main/c-pages/Article'
 import Admin from '../pages/Admin'
 import AddArticle from '../pages/Admin/c-pages/AddArticle'
 import UploadFile from '../pages/Admin/c-pages/UploadFile'
+import FileList from '../pages/Admin/c-pages/FileList'
 
 const routes = [
   {
@@ -62,6 +63,10 @@ const routes = [
       {
         path: '/admin/upload-file',
         component: UploadFile
+      },
+      {
+        path: '/admin/file-list',
+        component: FileList
       },
     ]
   },
