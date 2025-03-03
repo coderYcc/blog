@@ -11,5 +11,9 @@ module.exports = {
     plugins:[
       new BundleAnalyzerPlugin({analyzerPort: 9090}),
     ],
+    configure: (webpackConfig, { env, paths }) => {  
+      webpackConfig.output.publicPath = './';  
+      return webpackConfig;  
+    }  
   }
 }
