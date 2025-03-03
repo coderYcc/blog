@@ -1,37 +1,37 @@
 {
-  "id": "3222504",
-  "name": "blog",
+  "id": "4228755",
+  "name": "react-blog",
   "font_family": "iconfont",
   "css_prefix_text": "icon-",
   "description": "",
   "glyphs": [
     {
-      "icon_id": "77848",
-      "name": "返回2",
-      "font_class": "fanhui2",
+      "icon_id": "43502191",
+      "name": "VE",
+      "font_class": "xinjianxiangmu",
       "unicode": "e602",
       "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "11062885",
+      "name": "VET",
+      "font_class": "VET",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
     },
     {
       "icon_id": "77847",
       "name": "返回1",
       "font_class": "fanhui1",
-      "unicode": "e601",
-      "unicode_decimal": 58881
-    },
-    {
-      "icon_id": "17999283",
-      "name": "查看代码片段",
-      "font_class": "chakandaimapianduan",
       "unicode": "e600",
       "unicode_decimal": 58880
     },
     {
-      "icon_id": "17875595",
-      "name": "图片",
-      "font_class": "tupian",
-      "unicode": "e620",
-      "unicode_decimal": 58912
+      "icon_id": "77848",
+      "name": "返回2",
+      "font_class": "fanhui2",
+      "unicode": "e601",
+      "unicode_decimal": 58881
     }
   ]
 }

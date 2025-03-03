@@ -7,6 +7,7 @@ import Edit from '../pages/Edit'
 import Login from '../pages/Login'
 import Project from '../pages/Main/c-pages/Project'
 import Article from '../pages/Main/c-pages/Article'
+import Vechat from '../pages/Main/c-pages/Vechat'
 import Admin from '../pages/Admin'
 import AddArticle from '../pages/Admin/c-pages/AddArticle'
 import UploadFile from '../pages/Admin/c-pages/UploadFile'
@@ -42,6 +43,10 @@ const routes = [
       {
         path:'/main/article',
         component: Article
+      },
+      {
+        path:'/main/vechat',
+        component: Vechat
       },
     ]
   },

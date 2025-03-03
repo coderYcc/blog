@@ -7,6 +7,10 @@ export const headerLinks = [
     title: "实战",
     link: "/main/project"
   },
+  {
+    title: "聊天AI",
+    link: "/main/vechat"
+  },
 ]
 
 export const menuLinks = [
