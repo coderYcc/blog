@@ -6,12 +6,10 @@ export const VechatWrapper = styled.div`
   position: relative;
   .chat-container {
     height: 60%;
-    boeder: 1px solid #ddd
   }
   .chat-input {
     height: 30%;
     position: absolute;
     bottom: 0;
-    border: 1px solid #ddd;
   }
 `
