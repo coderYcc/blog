@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Redirect } from "react-router-dom";
 
 import Main from '../pages/Main'
 import Home from '../pages/Main/c-pages/Home'
-import Edit from '../pages/Edit'
-import Login from '../pages/Login'
-import Project from '../pages/Main/c-pages/Project'
-import Article from '../pages/Main/c-pages/Article'
-import Vechat from '../pages/Main/c-pages/Vechat'
-import Admin from '../pages/Admin'
-import AddArticle from '../pages/Admin/c-pages/AddArticle'
-import UploadFile from '../pages/Admin/c-pages/UploadFile'
-import FileList from '../pages/Admin/c-pages/FileList'
-
+const Login = lazy(() => import('../pages/Login'))
+const Edit = lazy(() => import('../pages/Edit'))
+const Project = lazy(() => import('../pages/Main/c-pages/Project'))
+const Article = lazy(() => import('../pages/Main/c-pages/Article'))
+const Vechat = lazy(() => import('../pages/Main/c-pages/Vechat'))
+const Admin = lazy(() => import('../pages/Admin'))
+const AddArticle = lazy(() => import('../pages/Admin/c-pages/AddArticle'))
+const UploadFile = lazy(() => import('../pages/Admin/c-pages/UploadFile'))
+const FileList = lazy(() => import('../pages/Admin/c-pages/FileList'))
 const routes = [
   {
     path:'/',
