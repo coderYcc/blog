@@ -71,6 +71,13 @@ const Vechat = memo(() => {
     }
   }
 
+  // 处理输入框内按下的按键
+  const handleKeyDown = (event) => {
+    if (event.code === 'Enter') {
+      handleSubmitQuestion()
+    }
+  };
+
   class SparkSSEClient {
     constructor() {
       this.controller = null;
@@ -88,9 +95,9 @@ const Vechat = memo(() => {
             'Accept': 'text/event-stream',
             'Content-Type': 'application/json' // 设置请求头以指示请求体中的数据类型
           },
-          body: JSON.stringify({params:{
+          body: JSON.stringify({
             question: question // 将问题作为请求体的一部分发送
-          }}) // 使用JSON.stringify来将JavaScript对象转换为JSON字符串
+          }) // 使用JSON.stringify来将JavaScript对象转换为JSON字符串
         });
 
         const reader = response.body.getReader();
@@ -167,6 +174,7 @@ const Vechat = memo(() => {
             maxRows: 2,
           }}
           onChange={changeDescription}
+          onKeyDown={handleKeyDown}
         />
         <div className="chat-button">
           <SendOutlined className="chat-submit" onClick={() => handleSubmitQuestion()}/>
