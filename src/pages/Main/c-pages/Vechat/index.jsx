@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useState, useRef } from 'react'
 import { VechatWrapper } from './style'
 import { Input } from 'antd';
 import { SendOutlined } from '@ant-design/icons'
@@ -13,6 +13,7 @@ const chatInfo = {
 const Vechat = memo(() => {
   const [question, setQuestion] = useState('')
   const [chatList, setChatList] = useState([chatInfo])
+  const scrollRef = useRef()
   const changeDescription = (e) => {
     const text = e.target?.value || ''
     setQuestion(text)
@@ -65,6 +66,9 @@ const Vechat = memo(() => {
         idx === index ? { ...item, content: newValue } : item
       );
     });
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
   }
 
   class SparkSSEClient {
@@ -138,7 +142,7 @@ const Vechat = memo(() => {
 
   return (
     <VechatWrapper>
-      <div className="chat-box">
+      <div className="chat-box" ref={scrollRef}>
         <div className="chat-container">
           {
             chatList.map((item, index) => {
