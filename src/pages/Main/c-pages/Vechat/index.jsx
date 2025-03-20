@@ -3,6 +3,7 @@ import { VechatWrapper } from './style'
 import { Input } from 'antd';
 import { SendOutlined } from '@ant-design/icons'
 import ChatItem from './c-cpns/ChatItem'
+import '../../../../style/index.css'
 // import { queryAnswerInfo } from '../../../../network/chat'
 const { TextArea } = Input;
 const chatInfo = {
@@ -137,18 +138,20 @@ const Vechat = memo(() => {
 
   return (
     <VechatWrapper>
-      <div className="chat-container">
-        {
-          chatList.map((item, index) => {
-            return (
-              <ChatItem
-                key={index}
-                info={item}
-              />
-            )
-          })
-        }
-      </div>
+      <div className="chat-box">
+        <div className="chat-container">
+          {
+            chatList.map((item, index) => {
+              return (
+                <ChatItem
+                  key={index}
+                  info={item}
+                />
+              )
+            })
+          }
+        </div>
+      </div>      
       <div className="chat-input">
         <TextArea 
           rows={4} 

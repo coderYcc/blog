@@ -7,14 +7,25 @@ export const VechatWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  .chat-container {
-    padding: 20px 0;
-    width: 100%;
-    max-width: 780px;
+  .chat-box {
+    overflow: scroll;
     display: flex;
     flex: 1;
     flex-direction: column;
-    margin: 0 auto;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    .chat-container {
+      padding: 20px 0;
+      width: 100%;
+      max-width: 780px;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      margin: 0 auto;
+    }
+  }
+  .chat-box::-webkit-scrollbar { 
+    display: none;  /* Safari 和 Chrome */
   }
   .chat-input {
     height: 20%;

@@ -22,6 +22,11 @@ export const ChatItemWrapper = styled.div`
   .user-info {
     display: flex;
     flex-direction: row-reverse;
+    .content-text {
+      background-color: aliceblue;
+      border-radius: 20px;
+      padding: 5px 10px;
+    }
   }
   .content-right {
     width: 36px;
