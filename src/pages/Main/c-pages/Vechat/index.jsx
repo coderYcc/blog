@@ -81,7 +81,7 @@ const Vechat = memo(() => {
   class SparkSSEClient {
     constructor() {
       this.controller = null;
-      this.baseUrl = 'http://127.0.0.1:5100/chat/getAnswerInfo';
+      this.baseUrl = 'https://yexbxyz.top:5100/chat/getAnswerInfo';
     }
 
     async streamChat(question, callback) {
