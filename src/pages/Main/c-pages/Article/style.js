@@ -24,7 +24,7 @@ export const ArticleWrapper = styled.div`
       .desc-title {
         font-size: 20px;
         font-weight: bold;
-        color: #0ff;
+        color: #000000;
         text-align: center;
       }
       .desc-content {
@@ -35,7 +35,7 @@ export const ArticleWrapper = styled.div`
       margin-top: 10px;
       font-size: 20px;
       font-weight: bold;
-      color: #0ff;
+      color: #000000;
       text-align: center;
     }
   }
