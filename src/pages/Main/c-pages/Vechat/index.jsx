@@ -73,6 +73,7 @@ const Vechat = memo(() => {
 
   // 处理输入框内按下的按键
   const handleKeyDown = (event) => {
+    event.preventDefault()
     if (event.code === 'Enter') {
       handleSubmitQuestion()
     }
