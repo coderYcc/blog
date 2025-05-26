@@ -2,10 +2,10 @@ import styled from "styled-components";
 export const ChatItemWrapper = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
   .content-left {
     width: 32px;
     height: 32px;
+    margin-top: 15px;
     .anticon {
       height: 100%;
       width: 100%;
