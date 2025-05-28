@@ -31,7 +31,7 @@ export const ChatItemWrapper = styled.div`
   .content-right {
     width: 36px;
     height: 36px;
-    margin-top: 5px;
+    margin-top: 15px;
     .anticon {
       height: 100%;
       width: 100%;
