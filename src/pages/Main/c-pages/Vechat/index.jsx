@@ -14,6 +14,7 @@ const Vechat = memo(() => {
   const [question, setQuestion] = useState('')
   const [chatList, setChatList] = useState([chatInfo])
   const scrollRef = useRef()
+  const textAreaRef = useRef()
   const changeDescription = (e) => {
     const text = e.target?.value || ''
     setQuestion(text)
@@ -73,8 +74,11 @@ const Vechat = memo(() => {
 
   // 处理输入框内按下的按键
   const handleKeyDown = (event) => {
-    event.preventDefault()
     if (event.code === 'Enter') {
+      const textAreaElement = textAreaRef.current; // 获取原生DOM节点
+      if (textAreaElement) {
+        textAreaElement.focus();
+      }
       handleSubmitQuestion()
     }
   };
@@ -166,6 +170,7 @@ const Vechat = memo(() => {
       </div>      
       <div className="chat-input">
         <TextArea 
+          ref={textAreaRef}
           rows={4} 
           value={question}
           placeholder="输入你的问题，帮你深度解答"
@@ -176,6 +181,7 @@ const Vechat = memo(() => {
           }}
           onChange={changeDescription}
           onKeyDown={handleKeyDown}
+          onPressEnter={(e) => e.preventDefault()}
         />
         <div className="chat-button">
           <SendOutlined className="chat-submit" onClick={() => handleSubmitQuestion()}/>
