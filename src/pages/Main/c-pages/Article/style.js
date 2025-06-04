@@ -4,7 +4,8 @@ export const ArticleWrapper = styled.div`
   margin: 10px auto 0;
   display: flex;
   .article-content {
-    flex: 4;
+    flex: 3;
+    max-width: 75%;
     border: 1px solid #eee;
     padding: 10px;
     .article-title {
@@ -41,6 +42,7 @@ export const ArticleWrapper = styled.div`
   }
   .article-log {
     flex: 1;
+    max-width: 25%;
     margin-left: 10px;
     border: 1px solid #eee;
   }
