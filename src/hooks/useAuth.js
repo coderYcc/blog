@@ -5,12 +5,16 @@ export const useAuth = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const info = localStorage.getItem('userInfo')
+    const info = localStorage.getItem('userInfo');
     if(info) {
-      const data = JSON.parse(info);
-      setUserInfo(data);
-      setLoading(false);
+      try {
+        const data = JSON.parse(info);
+        setUserInfo(data);
+      } catch (e) {
+        console.error('Failed to parse userInfo', e);
+      }
     }
+    setLoading(false)
   }, []);
 
   const login = (data) => {
@@ -24,4 +28,4 @@ export const useAuth = () => {
   };
 
   return { userInfo, loading, login, logout };
-};  
+}

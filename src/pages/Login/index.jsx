@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import { Form, Button, Input, message } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { withRouter } from 'react-router-dom' // React Router v5
@@ -11,7 +11,11 @@ import { useAuth } from '../../hooks/useAuth.js'
 const Login = memo((props) => {
   const [form] = Form.useForm()
   const { history } = props
-  const { login } = useAuth() || {}
+  const { login, userInfo } = useAuth() || {}
+
+  useEffect(() => {
+    console.log('useAuth.userInfo 已更新:', userInfo);
+  }, [userInfo]);
 
   /**
    * @description: 登录
