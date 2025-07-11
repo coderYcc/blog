@@ -53,24 +53,29 @@ const routes = [
   {
     path:'/admin',
     component: Admin,
+    auth: true,
     routes: [
       {
         path: '/admin',
         exact: true,
+        auth: true,
         render: () => {
           <Redirect to="/admin/add-article"/>
         }
       },
       {
         path: '/admin/add-article',
+        auth: true,
         component: AddArticle
       },
       {
         path: '/admin/upload-file',
+        auth: true,
         component: UploadFile
       },
       {
         path: '/admin/file-list',
+        auth: true,
         component: FileList
       },
     ]
