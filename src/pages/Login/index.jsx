@@ -29,7 +29,7 @@ const Login = memo((props) => {
       // 处理登录成功逻辑
       if (response.code === 200 && response.token) {
         // 保存token到本地存储
-        login({userInfo: 123, token: response.token})
+        login({userInfo: response.user, token: response.token})
         message.success('登录成功')
         history.push('/admin')
       } else {
