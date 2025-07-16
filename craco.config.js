@@ -9,7 +9,7 @@ module.exports = {
       "@utils": resolve("src/utils"),
     },
     plugins:[
-      new BundleAnalyzerPlugin({analyzerPort: 9090}),
+      new BundleAnalyzerPlugin({analyzerPort: 9000}),
     ], 
   }
 }

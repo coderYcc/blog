@@ -55,22 +55,21 @@ p {
 
 ul {
   padding: 0 20px !important;
-  li {
-    list-style: circle;
-    li {
-      list-style: disc;
-      li {
-        list-style: square;
-      }
-    }
-  }
+}
+ul li {
+  list-style: circle;
+}
+ul li li{
+  list-style: disc;
 }
 
-table {
-  tr, td, th {
+ul li li li{
+  list-style: square;
+}
+
+table tr, td, th{
     padding: 0 5px;
     border: 1px solid;
-  }
 }
 
 img {
