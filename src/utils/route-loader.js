@@ -1,7 +1,7 @@
 // utils/route-loader.js
 import { useAuth } from '../hooks/useAuth';
 import { Redirect, useLocation } from 'react-router-dom';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const withAuthCheck = (Component) => (props) => {
   const { isAuthenticated  } = useAuth();
