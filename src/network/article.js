@@ -10,9 +10,13 @@ export function saveArticleInfo(params) {
   });
 }
 
-export function queryArticleList() {
+export function queryArticleList(params) {
   return request({
 		url: '/article/getArticleList',
+    data: {
+      params
+    },
+    method: "POST"
   });
 }
 
