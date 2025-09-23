@@ -11,8 +11,8 @@ const style = {
   height: 40,
   width: 40,
   lineHeight: '40px',
-  borderRadius: 4,
-  backgroundColor: '#1088e9',
+  borderRadius: 10,
+  backgroundColor: '#24292f',
   color: '#fff',
   textAlign: 'center',
   fontSize: 14,
@@ -48,22 +48,24 @@ const Home = memo(() => {
 
   useEffect(() => {
     fetchArticleList()
+    // eslint-disable-next-line
   }, [])
 
   // 监听滚动事件
   useEffect(() => {
+    const node = bottomRef.current;
     const observer = new IntersectionObserver((entries) => {
       if(entries[0].isIntersecting && hasMore && !loading && isFirstLoad.current) {
         setPage(prev => prev + 1)
       }
-    }, { threshold: 0.1 })
-    if (bottomRef.current) {
-      observer.observe(bottomRef.current);
+    }, { threshold: 0.5 })
+    if (node) {
+      observer.observe(node);
     }
     // 清理函数
     return () => {
-      if (bottomRef.current) {
-        observer.unobserve(bottomRef.current);
+      if (node) {
+        observer.unobserve(node);
       }
     };
   }, [loading, hasMore])
@@ -71,7 +73,6 @@ const Home = memo(() => {
   // 当页码变化时加载数据
   useEffect(() => {
     if (page > 1) {
-      console.log(2)
       fetchArticleList();
     }
   }, [page, fetchArticleList]);

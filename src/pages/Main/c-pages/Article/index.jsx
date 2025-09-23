@@ -4,13 +4,21 @@ import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
 import { queryArticleInfo } from '../../../../network/article';
 import { dateFormat } from '../../../../utils';
-import { message } from 'antd';
+import { message, BackTop } from 'antd';
 import Catalog from './c-cpns/Catalog'
 import {
-  ArticleWrapper
+  ArticleWrapper, CatalogButton
 } from './style.js'
-
-
+const style = {
+  height: 40,
+  width: 40,
+  lineHeight: '40px',
+  borderRadius: 10,
+  backgroundColor: '#24292f',
+  color: '#fff',
+  textAlign: 'center',
+  fontSize: 14,
+};
 
 const renderer = new marked.Renderer()
 marked.setOptions({
@@ -31,6 +39,18 @@ const Article = memo((props) => {
   const [article, setArticle] = useState({})
   const [cataLog, setCatalog] = useState([])
   const articleId  = props.location.pathname.split("/")[3]
+  const [showCatalog, setShowCatalog] = useState(false) // 默认显示
+  const [isMobile, setIsMobile] = useState(false)
+
+  // 检测是否为移动端
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    handleResize() // 初始化
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
   useEffect(() => {
     let params = {
       articleId
@@ -69,6 +89,55 @@ const Article = memo((props) => {
     }
   },[article.article_title])
 
+  const CatalogDrawer = ({ visible, onClose, children }) => {
+    return (
+      <>
+        {/* 遮罩层 */}
+        {visible && (
+          <div
+            className="drawer-mask"
+            onClick={onClose}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              backgroundColor: 'rgba(0,0,0,0.5)',
+              zIndex: 999,
+            }}
+          />
+        )}
+  
+        {/* 抽屉内容 */}
+        <div
+          className="drawer-content"
+          style={{
+            position: 'fixed',
+            top: 0,
+            right: visible ? 0 : '-80%',
+            width: '80%',
+            height: '100%',
+            backgroundColor: '#fff',
+            boxShadow: '-2px 0 10px rgba(0,0,0,0.1)',
+            transition: 'right 0.3s ease',
+            zIndex: 1000,
+            overflowY: 'auto',
+            padding: '20px',
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+            <h3>目录</h3>
+            <button onClick={onClose} style={{ background: '#f0f0f0', border: 'none', padding: '5px 10px', cursor: 'pointer' }}>
+              ✕
+            </button>
+          </div>
+          {children}
+        </div>
+      </>
+    )
+  }
+
   return (
     <ArticleWrapper>
       <div className='article-content'>
@@ -87,9 +156,26 @@ const Article = memo((props) => {
         >
         </div>
       </div>
-      <div className='article-log'>
-        <Catalog cataLog={cataLog}></Catalog>
-      </div>
+      {!isMobile && (
+        <div className='article-log'>
+          <Catalog cataLog={cataLog}></Catalog>
+        </div>
+      )}
+      
+      {isMobile && (
+        <CatalogButton onClick={() => setShowCatalog(true)}>
+          目录
+        </CatalogButton>
+      )}
+
+      {isMobile && (
+        <CatalogDrawer visible={showCatalog} onClose={() => setShowCatalog(false)}>
+          <Catalog cataLog={cataLog} />
+        </CatalogDrawer>
+      )}
+      <BackTop>
+        <div style={style}>UP</div>
+      </BackTop>
     </ArticleWrapper>
   )
 })
