@@ -1,12 +1,13 @@
 import styled from "styled-components";
 export const VechatWrapper = styled.div`
-  width: 70%;
+  max-width: 888px;
   height: calc(100% - 85px);
   margin: 0 auto;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 0 10px;
   .chat-box {
     overflow: scroll;
     display: flex;
