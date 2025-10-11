@@ -171,9 +171,9 @@ export const ArticleWrapper = styled.div`
     width: 100%;
     border-collapse: collapse;
     margin: 15px 0;
-    overflow: hidden;
+    overflow: scroll;
     display: block; /* 防止表格溢出 */
-    white-space: nowrap;
+    white-space: wrap;
   }
 
   table th,
