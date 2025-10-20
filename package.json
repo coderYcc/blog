@@ -2,6 +2,12 @@
   "name": "blog",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "serve": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@bytemd/plugin-breaks": "^1.21.0",
     "@bytemd/plugin-frontmatter": "^1.21.0",
@@ -33,14 +39,11 @@
     "slate-history": "^0.93.0",
     "slate-react": "^0.94.0",
     "styled-components": "^5.3.6",
-    "web-vitals": "^2.1.4",
-    "webpack-bundle-analyzer": "^4.10.2"
+    "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "serve": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "compression-webpack-plugin": "^11.1.0",
+    "webpack-bundle-analyzer": "^4.10.2",
   },
   "eslintConfig": {
     "extends": [
