@@ -11,5 +11,9 @@ module.exports = {
     plugins:[
       new BundleAnalyzerPlugin({analyzerPort: 9000}),
     ], 
+    configure: (webpackConfig) => {
+      webpackConfig.devtool = false;
+      return webpackConfig;
+    }
   }
 }
